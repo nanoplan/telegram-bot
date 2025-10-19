@@ -3,8 +3,8 @@ import { Telegraf } from "telegraf";
 
 const app = express();
 
-// Masukkan token bot kamu dari BotFather
-const bot = new Telegraf(process.env.8348753672:AAHsGp3ri7vSdkPOuPVW7Z2AmSRkg_FiK_M);
+// Ambil token dari Railway (BOT_TOKEN)
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Command /start
 bot.start((ctx) => {
@@ -22,15 +22,16 @@ bot.start((ctx) => {
   );
 });
 
-// Aktifkan webhook (supaya bisa jalan di Railway)
-app.use(bot.webhookCallback('/secret-path'));
+// Webhook callback
+app.use(bot.webhookCallback("/secret-path"));
 
-// Jalankan bot webhook
+// Set webhook (pastikan WEBHOOK_URL ada di Railway Variables)
 bot.telegram.setWebhook(process.env.WEBHOOK_URL + "/secret-path");
 
-// Listener Express
-app.get("/", (req, res) => res.send("Bot is running..."));
+// Endpoint cek bot
+app.get("/", (req, res) => res.send("✅ Bot is running..."));
 
+// Listener Express
 app.listen(process.env.PORT || 3000, () => {
-  console.log("Server running...");
+  console.log("🚀 Server running...");
 });
