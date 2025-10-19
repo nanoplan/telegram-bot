@@ -3,7 +3,7 @@ import { Telegraf } from "telegraf";
 
 const app = express();
 
-// Ambil token dari Railway (BOT_TOKEN)
+// Ambil token bot dari Railway
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // Command /start
@@ -22,16 +22,18 @@ bot.start((ctx) => {
   );
 });
 
-// Webhook callback
+// Pakai webhook, bukan polling
 app.use(bot.webhookCallback("/secret-path"));
 
-// Set webhook (pastikan WEBHOOK_URL ada di Railway Variables)
-bot.telegram.setWebhook(process.env.WEBHOOK_URL + "/secret-path");
+// Daftarkan webhook ke Telegram
+bot.telegram.setWebhook(`${process.env.WEBHOOK_URL}/secret-path`);
 
-// Endpoint cek bot
-app.get("/", (req, res) => res.send("✅ Bot is running..."));
+// Endpoint testing
+app.get("/", (req, res) => {
+  res.send("✅ Bot is running with webhook...");
+});
 
-// Listener Express
+// Jalankan Express
 app.listen(process.env.PORT || 3000, () => {
-  console.log("🚀 Server running...");
+  console.log("🚀 Server running on port " + (process.env.PORT || 3000));
 });
