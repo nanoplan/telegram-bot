@@ -8,11 +8,11 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // ✅ Command /start
 bot.start((ctx) => {
-  ctx.reply("🚀 Welcome to *Tonnect App*!", {
+  ctx.reply("Welcome to *Tonnect App*!", {
     parse_mode: "Markdown",
     reply_markup: {
       inline_keyboard: [
-        [{ text: "🚀 Open App", url: "https://tonnect2025.vercel.app" }],
+        [{ text: "🚀 Open App", url: "https://t.me/Tonnect_app_bot/start" }],
         [{ text: "👥 Join the community", url: "https://t.me/Tonnect_Real" }]
       ]
     }
