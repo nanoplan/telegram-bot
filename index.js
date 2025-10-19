@@ -8,16 +8,21 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // ✅ Command /start
 bot.start((ctx) => {
-  ctx.reply("Welcome to *Tonnect App*!", {
-    parse_mode: "Markdown",
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "🚀 Open App", url: "https://t.me/Tonnect_app_bot/start" }],
-        [{ text: "👥 Join the community", url: "https://t.me/Tonnect_Real" }]
-      ]
+  ctx.replyWithPhoto(
+    { url: "https://apricot-magnificent-swordtail-537.mypinata.cloud/ipfs/bafkreihx7dnkeusxzg242devl2oppx5m5nzt7qn3tmvqpjq2js4du564uy" },
+    {
+      caption: "Welcome to *Tonnect App*! Join Tonnect Mining Carnival - Farm tokens, spin the wheel, refer friends and climb the leadboard in this futuristic Web3 mining carnival",
+      parse_mode: "Markdown",
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: "🚀 Open App", url: "https://t.me/Tonnect_app_bot/start" }],
+          [{ text: "👥 Join the community", url: "https://t.me/Tonnect_Real" }]
+        ]
+      }
     }
-  });
+  );
 });
+
 
 // ✅ Webhook handler (jalan di /secret-path)
 app.use(bot.webhookCallback("/secret-path"));
